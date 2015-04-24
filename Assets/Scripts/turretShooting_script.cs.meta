@@ -1,0 +1,14 @@
+fileFormatVersion: 2
+guid: 217cf6436bb69d64383022b686492ab1
+timeCreated: 1429864959
+licenseType: Free
+MonoImporter:
+  serializedVersion: 2
+  defaultReferences:
+  - Bullet: {fileID: 113200, guid: 57e125b9c3f81f548a243965c1633476, type: 2}
+  - audio_clip: {instanceID: 0}
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
+using System;
 using System.Collections;
-using AGC;
+using AGC.Tools;
 
 public class splashscreen : MonoBehaviour {
 	
@@ -8,7 +9,6 @@ public class splashscreen : MonoBehaviour {
 	
 	public float fadeTime = 1.0f;
 	public int nextscene = 1;
-	private Tools agc;
 	
 	enum Fade {
 		In, Out
@@ -16,15 +16,14 @@ public class splashscreen : MonoBehaviour {
 
 	IEnumerator Start()
 	{		
-		agc = new Tools();
-		agc.Start(Application.productName);
-
-		agc.log("dataPath: " + Application.dataPath);
-		agc.log("platform: " + Application.platform);
-		agc.log("systemLanguage: " + Application.systemLanguage);
-		agc.log("installMode: " + Application.installMode);
-		agc.log("temporaryCachePath: " + Application.temporaryCachePath);
-		agc.log("Version of the runtime: " + Application.unityVersion);
+		AGCTools.log("dataPath: " + Application.dataPath);
+		AGCTools.log("platform: " + Application.platform);
+		AGCTools.log("systemLanguage: " + Application.systemLanguage);
+		AGCTools.log("installMode: " + Application.installMode);
+		AGCTools.log("temporaryCachePath: " + Application.temporaryCachePath);
+		AGCTools.log("Version of the runtime: " + Application.unityVersion);
+		AGCTools.WriteCFGSetting("UserName", Environment.UserName);
+		
 
 		//mat.color.a = 0;
 		mat.color = new Color(1, 1, 1,0); 
