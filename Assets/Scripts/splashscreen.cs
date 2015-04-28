@@ -2,6 +2,7 @@
 using System;
 using System.Collections;
 using AGC.Tools;
+using AGC.Settings;
 
 public class splashscreen : MonoBehaviour {
 	
@@ -22,7 +23,7 @@ public class splashscreen : MonoBehaviour {
 		AGCTools.log("installMode: " + Application.installMode);
 		AGCTools.log("temporaryCachePath: " + Application.temporaryCachePath);
 		AGCTools.log("Version of the runtime: " + Application.unityVersion);
-		AGCTools.WriteCFGSetting("UserName", Environment.UserName);
+		AGCSettings.WriteCFGSetting("UserName", Environment.UserName);
 		
 
 		//mat.color.a = 0;

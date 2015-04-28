@@ -74,7 +74,7 @@ TrailRenderer:
   m_Colors:
     m_Color[0]:
       serializedVersion: 2
-      rgba: 16777215
+      rgba: 4294967295
     m_Color[1]:
       serializedVersion: 2
       rgba: 4294967295
@@ -86,9 +86,9 @@ TrailRenderer:
       rgba: 4294967295
     m_Color[4]:
       serializedVersion: 2
-      rgba: 16777215
-  m_MinVertexDistance: 0
-  m_Autodestruct: 1
+      rgba: 4294967295
+  m_MinVertexDistance: 1
+  m_Autodestruct: 0
 --- !u!1001 &100100000
 Prefab:
   m_ObjectHideFlags: 1

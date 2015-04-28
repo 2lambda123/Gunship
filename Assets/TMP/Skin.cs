@@ -16,6 +16,11 @@ public class Skin : MonoBehaviour {
 			yield return www;
 			r.material.mainTexture = www.texture;
 		}
+		string[] test = AGCModLoader.IndexFiles();
+		foreach(string s in test)
+		{
+			AGCTools.log(s);
+		}
 	}
 }
 
