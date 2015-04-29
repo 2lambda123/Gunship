@@ -7,6 +7,7 @@ public class TurretScript : MonoBehaviour {
 	public float Damage = 1.0f;
 	public float FireRate = 1.0f;
 	public float Error = 1f;
+	public Texture2D AimTex;
 	public GameObject Bullet;
 	public AudioClip audio_clip;
 	public GameObject player;
@@ -18,12 +19,14 @@ public class TurretScript : MonoBehaviour {
 	public float maximumY = 60F;
 	
 	private float rotationY = 0F;
+	private float rotationX = 0F;
 	private float t = 0f;
 	private AudioSource audio_source;
 	private Camera player_cam;
 	private Camera turret_cam;
 	private CharacterController car_control;
 	private bool can_shoot;
+	private Vector3 org;
 
 	
 	void Start()
@@ -37,6 +40,7 @@ public class TurretScript : MonoBehaviour {
 		turret_cam.enabled  = false;
 		player_cam.enabled = true;
 		car_control.enabled = true;
+		org = this.transform.localEulerAngles;
 	}
 
 
@@ -77,12 +81,19 @@ public class TurretScript : MonoBehaviour {
 				}
 				Debug.DrawLine (this.transform.position,hit.point, Color.red);
 			}
-			float rotationX = transform.localEulerAngles.y + Input.GetAxis("Mouse X") * sensitivityX;
 			
 			rotationY += Input.GetAxis("Mouse Y") * sensitivityY;
 			rotationY = Mathf.Clamp (rotationY, minimumY, maximumY);
+
+			rotationX += Input.GetAxis("Mouse X") * sensitivityX;
+			rotationX = Mathf.Clamp (rotationX, minimumX, maximumX);
 			
-			transform.localEulerAngles = new Vector3(-rotationY, rotationX, 0);	
+			transform.localEulerAngles = new Vector3(-rotationY, rotationX, 0) + org;	
 		}
+	}
+	void OnGUI() 
+	{
+		if (can_shoot)
+			GUI.Label(new Rect(Screen.width/2-AimTex.width/2, Screen.height/2-AimTex.height/2, AimTex.width, AimTex.height), AimTex);
 	}
 }
