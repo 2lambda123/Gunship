@@ -3,7 +3,7 @@ using System.Collections;
 
 public class explode : MonoBehaviour {
 	public GameObject particlesystemAAA;
-	public float delayTime = 5.0f;
+	public float delayTime = 3.0f;
 
 	private float startTime;
 
