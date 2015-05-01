@@ -7,7 +7,7 @@ public class Menu : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-		string[] n = AGCModLoader.IndexFiles();
+		string[] n = AGCMod.IndexFileNames();
 		foreach(string s in n)
 		{
 			AGCTools.log(s);

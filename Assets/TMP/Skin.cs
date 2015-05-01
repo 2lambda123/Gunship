@@ -9,14 +9,14 @@ public class Skin : MonoBehaviour {
 
 	IEnumerator Start() {
 		r = GetComponent<Renderer>();
-		string t = AGCModLoader.FindTexture("Player.png");
+		string t = AGCMod.FindTexture("Player.png");
 		if(t != null)
 		{
 			WWW www = new WWW(t);
 			yield return www;
 			r.material.mainTexture = www.texture;
 		}
-		string[] test = AGCModLoader.IndexFiles();
+		string[] test = AGCMod.IndexFilesPaths();
 		foreach(string s in test)
 		{
 			AGCTools.log(s);
