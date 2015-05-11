@@ -1625,7 +1625,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 11437894, guid: fd6993fff2ae16447ba959170d5207ec, type: 2}
       propertyPath: Error
-      value: 50
+      value: 20
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: fd6993fff2ae16447ba959170d5207ec, type: 2}
