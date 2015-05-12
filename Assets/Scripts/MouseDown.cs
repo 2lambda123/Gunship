@@ -8,7 +8,7 @@ public class MouseDown : MonoBehaviour {
 	void OnMouseDown () 
 	{
 		AGCSettings.WriteCFGSetting("Logo",this.gameObject.name);
-		Application.LoadLevel(0);
+		Application.LoadLevel(1);
 	}
 
 }

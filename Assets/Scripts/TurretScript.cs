@@ -2,7 +2,8 @@
 using System.Collections;
 using AGC.Tools;
 
-public class TurretScript : MonoBehaviour {
+public class TurretScript : MonoBehaviour 
+{
 
 	public float Damage = 1.0f;
 	public float FireRate = 1.0f;

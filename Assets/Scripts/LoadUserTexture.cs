@@ -4,12 +4,14 @@ using AGC.mod;
 using AGC.Tools;
 using AGC.Settings;
 
-public class LoadUserTexture : MonoBehaviour {
+public class LoadUserTexture : MonoBehaviour 
+{
 
 	public string TextureName;
 	public Material material;
 	
-	IEnumerator Start() {
+	IEnumerator Start() 
+	{
 		string n = AGCSettings.FindCFGSetting(TextureName);
 		AGCTools.log("TextureName name: " + n);
 		if(n == null)
@@ -20,12 +22,6 @@ public class LoadUserTexture : MonoBehaviour {
 			WWW www = new WWW(t);
 			yield return www;
 			material.mainTexture = www.texture;
-		}
-		string[] test = AGCMod.IndexFileNames();
-		AGCTools.log("IndexFiles;");
-		foreach(string s in test)
-		{
-			AGCTools.log(s);
 		}
 	}
 
