@@ -24,8 +24,7 @@ public class AIAirplanes1 : MonoBehaviour {
 			// Second point - Centroid of A, B, C. Tangent is pointing at C
 			waypointSequence.addPoint(middleWaypointPosition, finishTangent);
 			// Last point - position is at B
-			waypointSequence.addPoint(movementLocation, movementLocation +
-			                          (movementLocation - attackUnit.transform.position).normalized * 10);
+			waypointSequence.addPoint (movementLocation, movementLocation + (movementLocation - attackUnit.transform.position).normalized * 10);
 		}
 		*/
 	}
