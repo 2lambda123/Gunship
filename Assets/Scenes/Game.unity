@@ -1544,10 +1544,6 @@ Prefab:
       propertyPath: player
       value: 
       objectReference: {fileID: 1625131542}
-    - target: {fileID: 446462, guid: fd6993fff2ae16447ba959170d5207ec, type: 2}
-      propertyPath: m_LocalPosition.y
-      value: .600000024
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: fd6993fff2ae16447ba959170d5207ec, type: 2}
   m_IsPrefabParent: 0
@@ -3333,10 +3329,10 @@ Prefab:
       propertyPath: player
       value: 
       objectReference: {fileID: 1625131542}
-    - target: {fileID: 11414464, guid: 7d781f254729b6649a4122a20971648f, type: 2}
-      propertyPath: Bullet
-      value: 
-      objectReference: {fileID: 163788, guid: 38104cc99097d01498144edb94524ec3, type: 2}
+    - target: {fileID: 6496812, guid: 7d781f254729b6649a4122a20971648f, type: 2}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 7d781f254729b6649a4122a20971648f, type: 2}
   m_IsPrefabParent: 0
