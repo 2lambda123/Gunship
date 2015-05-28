@@ -6,7 +6,7 @@ using AGC.mod;
 
 public class Skin : MonoBehaviour {
 	Renderer r;
-
+    /*
 	IEnumerator Start() {
 		r = GetComponent<Renderer>();
 		string t = AGCMod.FindTexture("Player.png");
@@ -22,5 +22,6 @@ public class Skin : MonoBehaviour {
 			AGCTools.log(s);
 		}
 	}
+     * */
 }
 

@@ -11,7 +11,7 @@ public class GuiAdd : MonoBehaviour {
 	float max = 1;
 
 	// Use this for initialization
-	IEnumerator Start ()
+	void Start ()
 	{
 		string[] AllTextures = AGCMod.IndexFileNames();
 		AGCTools.log("IndexFiles ");
@@ -20,10 +20,8 @@ public class GuiAdd : MonoBehaviour {
 		{
 			GameObject clone = Instantiate(Game_object,new Vector3(i*1.5f,0,0), Quaternion.identity) as GameObject;
 			clone.name = AllTextures[i];
-			WWW www = new WWW(AGCMod.FindTexture(AllTextures[i]));
-			yield return www;
 			Renderer r = clone.GetComponent<Renderer>();
-			r.material.mainTexture = www.texture;
+            r.material.mainTexture = AGCMod.LoadTexture(AllTextures[i],512);
 			max = i+5;
 			AGCTools.log(i+" "+AllTextures[i]);
 		}

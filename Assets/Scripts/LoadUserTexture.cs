@@ -10,18 +10,16 @@ public class LoadUserTexture : MonoBehaviour
 	public string TextureName;
 	public Material material;
 	
-	IEnumerator Start() 
+	void Start() 
 	{
 		string n = AGCSettings.FindCFGSetting(TextureName);
 		AGCTools.log("TextureName name: " + n);
 		if(n == null)
 			n = "Logo.png";
-		string t = AGCMod.FindTexture(n);
+		Texture2D t = AGCMod.LoadTexture(n,512);
 		if(t != null)
 		{
-			WWW www = new WWW(t);
-			yield return www;
-			material.mainTexture = www.texture;
+			material.mainTexture = t;
 		}
 	}
 
