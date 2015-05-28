@@ -115,8 +115,8 @@ public class TurretScript : MonoBehaviour
         rotationX += Input.GetAxis("Mouse X") * sensitivityX;
         rotationX = Mathf.Clamp(rotationX, minimumX, maximumX);
 
-        this.transform.localEulerAngles = new Vector3(-rotationY, 0, 0) + org;
-        BlisterHull.transform.localEulerAngles = new Vector3(0, rotationX, 0) + org;
+        this.transform.localEulerAngles = new Vector3(0, rotationX, 0) + org;
+        BlisterHull.transform.localEulerAngles = new Vector3(-rotationY, 0, 0) + org;
     }
     void UpdateNormal()
     {
