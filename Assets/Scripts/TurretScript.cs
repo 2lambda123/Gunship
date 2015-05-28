@@ -36,6 +36,7 @@ public class TurretScript : MonoBehaviour
     private CharacterController car_control;
     private bool can_shoot;
     private Vector3 org;
+    private Vector3 blisterorg;
 
     public enum turret_types { Normal, Blister };
 
@@ -52,6 +53,7 @@ public class TurretScript : MonoBehaviour
         player_cam.enabled = true;
         car_control.enabled = true;
         org = this.transform.localEulerAngles;
+        if (BlisterHull != null) blisterorg = BlisterHull.transform.localEulerAngles;
     }
     void Update()
     {
@@ -116,7 +118,7 @@ public class TurretScript : MonoBehaviour
         rotationX = Mathf.Clamp(rotationX, minimumX, maximumX);
 
         this.transform.localEulerAngles = new Vector3(0, rotationX, 0) + org;
-        BlisterHull.transform.localEulerAngles = new Vector3(-rotationY, 0, 0) + org;
+        BlisterHull.transform.localEulerAngles = new Vector3(-rotationY, 0, 0) + blisterorg;
     }
     void UpdateNormal()
     {
