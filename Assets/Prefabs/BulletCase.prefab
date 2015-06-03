@@ -12,7 +12,7 @@ GameObject:
   - 136: {fileID: 13669766}
   - 23: {fileID: 2395640}
   - 54: {fileID: 5469464}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: BulletCase
   m_TagString: Untagged
   m_Icon: {fileID: 0}

@@ -13,17 +13,18 @@ public class GuiAdd : MonoBehaviour {
 	// Use this for initialization
 	void Start ()
 	{
-		string[] AllTextures = AGCMod.IndexFileNames();
+		List<string> AllTextures = new List<string>(AGCMod.IndexFileNames(".jpg"));
+        AllTextures.AddRange(AGCMod.IndexFileNames(".png"));
 		AGCTools.log("IndexFiles ");
 		//float x = 0;
-		for(int i = 0;i < AllTextures.Length;i++)
+		foreach(string s in AllTextures)
 		{
-			GameObject clone = Instantiate(Game_object,new Vector3(i*1.5f,0,0), Quaternion.identity) as GameObject;
-			clone.name = AllTextures[i];
+			GameObject clone = Instantiate(Game_object,new Vector3(max/4,0,0), Quaternion.identity) as GameObject;
+			clone.name = s;
 			Renderer r = clone.GetComponent<Renderer>();
-            r.material.mainTexture = AGCMod.LoadTexture(AllTextures[i],512);
-			max = i+5;
-			AGCTools.log(i+" "+AllTextures[i]);
+            r.material.mainTexture = AGCMod.LoadTexture(s,512);
+			max += 5;
+			AGCTools.log(""+s);
 		}
 	}
 	void Update()
