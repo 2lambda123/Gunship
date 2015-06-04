@@ -43,7 +43,7 @@ public class TurretScript : MonoBehaviour
 
     void Start()
     {
-        AGCTools.log("turretShooting_script loaded " + TurretType);
+        AGCTools.log("turretShooting_script loaded on: " + this.gameObject.name + " type: " + TurretType);
         audio_source = this.gameObject.AddComponent<AudioSource>();
         turret_cam = TurretCam;
         car_control = player.GetComponent<CharacterController>();
@@ -97,8 +97,15 @@ public class TurretScript : MonoBehaviour
                 Destroy(clone, 5);
                 if (Physics.Raycast(this.transform.position, v, out hit, 20000))
                 {
-                    if (hit.collider.tag == "ApplyDamage")
+                    try
+                    {
                         hit.collider.SendMessage("ApplyDamage", Damage);
+                    }
+                    catch
+                    {
+                       // AGCTools.log(ex.Message);
+                        //AGCTools.log(ex.Source);
+                    }
                 }
                 shoot_from++;
                 if (shoot_from >= TurretBarrels.Length)
@@ -108,6 +115,7 @@ public class TurretScript : MonoBehaviour
             }
         }
     }
+
     void UpdateBlister()
     {
 

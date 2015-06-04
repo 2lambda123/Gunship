@@ -1,38 +1,27 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class Repair : MonoBehaviour
+public class RepairNew : MonoBehaviour
 {
-    private float repairProgress = 0f;
-    private float repairModifier = 0.5f;
+    private float repairProgress = 50f;
+    private float repairModifier = 5f;
 
     private float progressBarWidth = 10f;
 
     private bool showRepairProgressGui = false;
     private bool showProgressBarWidthGui = true;
 
-    private float maxProgress = 300.0f;
+    private float maxProgress = 100f;
 
-    public Transform other;
+    public Transform player;
     public GameObject destroyable;
 
-    // Use this for initialization
-    void Start()
-    {
-
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-
-    }
 
     public void OnGUI()
     {
-        if (other)
+        if (player != null)
         {
-            float dist = Vector3.Distance(other.position, transform.position);
+            float dist = Vector3.Distance(player.position, this.transform.position);
             if (dist < 2.5)
             {
                 if (showRepairProgressGui == true)
@@ -41,7 +30,7 @@ public class Repair : MonoBehaviour
                                      Screen.height / 2 - 25,	//Y
                                      progressBarWidth,			//Width
                                      25),						//Height
-                                "Repairing...");				//Display Value
+                                "Repairing..." + repairProgress + "%");				//Display Value
                 }
 
                 if (showProgressBarWidthGui == true)
@@ -57,8 +46,8 @@ public class Repair : MonoBehaviour
                 {
                     showRepairProgressGui = true;
                     showProgressBarWidthGui = false;
-                    repairProgress += repairModifier;
-                    progressBarWidth += repairModifier;
+                    repairProgress += repairModifier * Time.deltaTime;
+                    progressBarWidth += repairModifier * Time.deltaTime;
                 }
 
                 if (Input.GetKeyUp(KeyCode.F))
@@ -71,6 +60,7 @@ public class Repair : MonoBehaviour
 
                 if (repairProgress > maxProgress)
                 {
+                    print("if (repairProgress > maxProgress)");
                     showRepairProgressGui = false;
                     showProgressBarWidthGui = false;
                     repairProgress = 0f;
