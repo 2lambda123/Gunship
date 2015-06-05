@@ -23,9 +23,11 @@ public class splashscreen : MonoBehaviour {
 		AGCTools.log("installMode: " + Application.installMode);
 		AGCTools.log("temporaryCachePath: " + Application.temporaryCachePath);
 		AGCTools.log("Version of the runtime: " + Application.unityVersion);
+        AGCTools.log("UserName: " + Environment.UserName);
+        AGCTools.log("MachineName: " + Environment.MachineName);
 		AGCSettings.WriteCFGSetting("UserName", Environment.UserName);
-		
-
+        print("UserName: " + Environment.UserName);
+        print("MachineName: " + Environment.MachineName);
 		//mat.color.a = 0;
 		mat.color = new Color(1, 1, 1,0); 
 		yield return new  WaitForSeconds(0.5f);

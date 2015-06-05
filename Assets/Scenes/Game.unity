@@ -14,10 +14,10 @@ SceneSettings:
 RenderSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 6
-  m_Fog: 0
+  m_Fog: 1
   m_FogColor: {r: .5, g: .5, b: .5, a: 1}
   m_FogMode: 3
-  m_FogDensity: .00999999978
+  m_FogDensity: .00200000009
   m_LinearFogStart: 0
   m_LinearFogEnd: 300
   m_AmbientSkyColor: {r: .211999997, g: .226999998, b: .259000003, a: 1}
@@ -308,8 +308,8 @@ MeshRenderer:
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_Materials:
-  - {fileID: 2100000, guid: 456d53d8b35a07d4286f5c6b3d527ff5, type: 2}
-  - {fileID: 2100000, guid: e5ab8ed38dfb2274fa314a70054fdfd1, type: 2}
+  - {fileID: 2100000, guid: e12c92e7209d78d4c9f00683c678f75b, type: 2}
+  - {fileID: 2100000, guid: 54be911e10d2f2a43902c17cb03731d5, type: 2}
   m_SubsetIndices: 
   m_StaticBatchRoot: {fileID: 0}
   m_UseLightProbes: 1
@@ -343,7 +343,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Damage: 1
-  FireRate: 0
+  FireRate: .100000001
   Error: 25
   enterDistace: 3
   TurretType: 1
@@ -456,7 +456,7 @@ Camera:
     width: 1
     height: 1
   near clip plane: .300000012
-  far clip plane: 1000
+  far clip plane: 100000
   field of view: 60
   orthographic: 0
   orthographic size: 5
@@ -492,7 +492,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 406679978}
   m_LocalRotation: {x: 0, y: 0, z: -3.2584137e-07, w: -1}
-  m_LocalPosition: {x: 0, y: .0244999994, z: -.0217000004}
+  m_LocalPosition: {x: -0, y: .0210999995, z: -.0306000002}
   m_LocalScale: {x: .0285714306, y: .03533943, z: .0353394337}
   m_Children: []
   m_Father: {fileID: 1721759405}
@@ -580,7 +580,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 435817928}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -20.6100006, y: 1.46000004, z: -28.9899998}
+  m_LocalPosition: {x: -20.6900005, y: 1.46000004, z: -28.9899998}
   m_LocalScale: {x: 7.8869257, y: 7.8869257, z: 7.8869257}
   m_Children: []
   m_Father: {fileID: 0}
@@ -692,6 +692,14 @@ Prefab:
       propertyPath: audio_clip
       value: 
       objectReference: {fileID: 8300000, guid: 749e0777688c184469ae7e133083647d, type: 3}
+    - target: {fileID: 2047566, guid: fd6993fff2ae16447ba959170d5207ec, type: 2}
+      propertyPath: far clip plane
+      value: 100000
+      objectReference: {fileID: 0}
+    - target: {fileID: 11437894, guid: fd6993fff2ae16447ba959170d5207ec, type: 2}
+      propertyPath: FireRate
+      value: .100000001
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: fd6993fff2ae16447ba959170d5207ec, type: 2}
   m_IsPrefabParent: 0
@@ -753,6 +761,48 @@ Transform:
   m_Children: []
   m_Father: {fileID: 1949587725}
   m_RootOrder: 2
+--- !u!1 &1162162410
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 1162162412}
+  - 114: {fileID: 1162162411}
+  m_Layer: 0
+  m_Name: Terrain
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1162162411
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1162162410}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1fcf7cc4da6ecc04a9ae4c3ba7f902f1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  terrain: {fileID: 194748, guid: ea21ed38bde4b3442a320953d1ab8ec2, type: 2}
+  speed: 20
+  pos: {x: 6000, y: -250, z: -3000}
+--- !u!4 &1162162412
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1162162410}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 8
 --- !u!1 &1163914454
 GameObject:
   m_ObjectHideFlags: 0
@@ -1192,6 +1242,14 @@ Prefab:
       propertyPath: m_JumpSpeed
       value: 5
       objectReference: {fileID: 0}
+    - target: {fileID: 100002, guid: 5e9e851c0e142814dac026a256ba2ac0, type: 2}
+      propertyPath: m_Name
+      value: Camara
+      objectReference: {fileID: 0}
+    - target: {fileID: 2000000, guid: 5e9e851c0e142814dac026a256ba2ac0, type: 2}
+      propertyPath: far clip plane
+      value: 100000
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 5e9e851c0e142814dac026a256ba2ac0, type: 2}
   m_IsPrefabParent: 0
@@ -1373,6 +1431,10 @@ Prefab:
     - target: {fileID: 6496812, guid: 7d781f254729b6649a4122a20971648f, type: 2}
       propertyPath: m_Enabled
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2006630, guid: 7d781f254729b6649a4122a20971648f, type: 2}
+      propertyPath: far clip plane
+      value: 100000
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 7d781f254729b6649a4122a20971648f, type: 2}
