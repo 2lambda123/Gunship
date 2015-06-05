@@ -7,6 +7,7 @@ public class TurretScript : MonoBehaviour
     public float Damage = 1.0f;
     public float FireRate = 1.0f;
     public float Error = 1f;
+    public float enterDistace = 2f;
     public turret_types TurretType = turret_types.Normal;
     public Texture2D AimTex;
     public GameObject Bullet;
@@ -23,8 +24,6 @@ public class TurretScript : MonoBehaviour
     public float maximumX = 360F;
     public float minimumY = -60F;
     public float maximumY = 60F;
-
-    public float imewets;
 
     private int shoot_from = 0;
     private float rotationY = 0F;
@@ -60,7 +59,7 @@ public class TurretScript : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.E))
         {
             float dist = Vector3.Distance(player.transform.position, this.transform.position);
-            if (dist < 2)
+            if (dist < enterDistace)
             {
                 can_shoot = !can_shoot;
                 turret_cam.enabled = !turret_cam.enabled;
@@ -103,8 +102,6 @@ public class TurretScript : MonoBehaviour
                     }
                     catch
                     {
-                       // AGCTools.log(ex.Message);
-                        //AGCTools.log(ex.Source);
                     }
                 }
                 shoot_from++;
