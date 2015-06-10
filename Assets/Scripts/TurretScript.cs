@@ -32,7 +32,6 @@ public class TurretScript : MonoBehaviour
     private AudioSource audio_source;
     private Camera player_cam;
     private Camera turret_cam;
-    private CharacterController car_control;
     private bool can_shoot;
     private Vector3 org;
     private Vector3 blisterorg;
@@ -45,12 +44,11 @@ public class TurretScript : MonoBehaviour
         AGCTools.log("turretShooting_script loaded on: " + this.gameObject.name + " type: " + TurretType);
         audio_source = this.gameObject.AddComponent<AudioSource>();
         turret_cam = TurretCam;
-        car_control = player.GetComponent<CharacterController>();
         player_cam = player.GetComponentInChildren<Camera>();
         can_shoot = false;
         turret_cam.enabled = false;
         player_cam.enabled = true;
-        car_control.enabled = true;
+        player.SetActive(true);
         org = this.transform.localEulerAngles;
         if (BlisterHull != null) blisterorg = BlisterHull.transform.localEulerAngles;
     }
@@ -64,7 +62,7 @@ public class TurretScript : MonoBehaviour
                 can_shoot = !can_shoot;
                 turret_cam.enabled = !turret_cam.enabled;
                 player_cam.enabled = !player_cam.enabled;
-                car_control.enabled = !car_control.enabled;
+                player.SetActive(!player.activeSelf);
             }
         }
         if (can_shoot)

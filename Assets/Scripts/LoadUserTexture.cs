@@ -12,7 +12,7 @@ public class LoadUserTexture : MonoBehaviour
 
     void Start()
     {
-        string n = AGCSettings.FindCFGSetting(TextureName);
+        string n = AGCSettings.FindCFGString(TextureName);
         AGCTools.log("TextureName name: " + n);
         if (n == null)
             n = "Logo.png";

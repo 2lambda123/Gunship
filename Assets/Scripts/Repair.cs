@@ -16,18 +16,6 @@ public class Repair : MonoBehaviour
     public Transform other;
     public GameObject destroyable;
 
-    // Use this for initialization
-    void Start()
-    {
-
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-
-    }
-
     public void OnGUI()
     {
         if (other)
@@ -75,7 +63,6 @@ public class Repair : MonoBehaviour
                     showProgressBarWidthGui = false;
                     repairProgress = 0f;
                     Destroy(destroyable);
-
                 }
             }
         }
