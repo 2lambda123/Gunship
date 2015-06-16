@@ -1,6 +1,7 @@
 using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
+using AGC.Tools;
 
 public enum eEndPointsMode { AUTO, AUTOCLOSED, EXPLICIT }
 public enum eWrapMode { ONCE, LOOP }
@@ -24,15 +25,36 @@ public class SplineInterpolator : MonoBehaviour
 	List<SplineNode> mNodes = new List<SplineNode>();
 	string mState = "";
 	bool mRotations;
-
+    public bool Enabled = true;//
+    Rigidbody rb;
+    public float Health = 10f;
 	OnEndCallback mOnEndCallback;
 
-
+    public void ApplyDamage(float d)
+    {
+        Health -= d;
+#if UNITY_EDITOR
+        AGCTools.log("Health " + Health + " Damage " + d);
+#endif//UNITY_EDITOR
+        if (Health <= 0)
+        {
+            Enabled = false;
+            rb.isKinematic = false;
+            float param = (mCurrentTime - mNodes[mCurrentIdx].Time) / (mNodes[mCurrentIdx + 1].Time - mNodes[mCurrentIdx].Time);
+            rb.AddExplosionForce(4000, GetHermiteInternal(mCurrentIdx, param - 0.1f), 1000);
+        }
+            
+    }
 
 	void Awake()
 	{
 		Reset();
 	}
+    void Start()
+    {
+        rb = this.GetComponent<Rigidbody>();
+        rb.isKinematic = true;
+    }
 
 	public void StartInterpolation(OnEndCallback endCallback, bool bRotations, eWrapMode mode)
 	{
@@ -133,61 +155,75 @@ public class SplineInterpolator : MonoBehaviour
 	float mCurrentTime;
 	int mCurrentIdx = 1;
 
-	void Update()
-	{
-		if (mState == "Reset" || mState == "Stopped" || mNodes.Count < 4)
-			return;
+    void Update()
+    {
+        if (Enabled)
+        {
+            if (mState == "Reset" || mState == "Stopped" || mNodes.Count < 4)
+                return;
 
-		mCurrentTime += Time.deltaTime;
+            mCurrentTime += Time.deltaTime;
 
-		// We advance to next point in the path
-		if (mCurrentTime >= mNodes[mCurrentIdx + 1].Time)
-		{
-			if (mCurrentIdx < mNodes.Count - 3)
-			{
-				mCurrentIdx++;
-			}
-			else
-			{
-				if (mState != "Loop")
-				{
-					mState = "Stopped";
+            // We advance to next point in the path
+            if (mCurrentTime >= mNodes[mCurrentIdx + 1].Time)
+            {
+                if (mCurrentIdx < mNodes.Count - 3)
+                {
+                    mCurrentIdx++;
+                }
+                else
+                {
+                    if (mState != "Loop")
+                    {
+                        mState = "Stopped";
 
-					// We stop right in the end point
-					transform.position = mNodes[mNodes.Count - 2].Point;
+                        // We stop right in the end point
+                        transform.position = mNodes[mNodes.Count - 2].Point;
 
-					if (mRotations)
-						transform.rotation = mNodes[mNodes.Count - 2].Rot;
+                        if (mRotations)
+                            transform.rotation = mNodes[mNodes.Count - 2].Rot;
 
-					// We call back to inform that we are ended
-					if (mOnEndCallback != null)
-						mOnEndCallback();
-				}
-				else
-				{
-					mCurrentIdx = 1;
-					mCurrentTime = 0;
-				}
-			}
-		}
+                        // We call back to inform that we are ended
+                        if (mOnEndCallback != null)
+                            mOnEndCallback();
+                    }
+                    else
+                    {
+                        mCurrentIdx = 1;
+                        mCurrentTime = 0;
+                    }
+                }
+            }
 
-		if (mState != "Stopped")
-		{
-			// Calculates the t param between 0 and 1
-			float param = (mCurrentTime - mNodes[mCurrentIdx].Time) / (mNodes[mCurrentIdx + 1].Time - mNodes[mCurrentIdx].Time);
+            if (mState != "Stopped")
+            {
+                // Calculates the t param between 0 and 1
+                float param = (mCurrentTime - mNodes[mCurrentIdx].Time) / (mNodes[mCurrentIdx + 1].Time - mNodes[mCurrentIdx].Time);
 
-			// Smooth the param
-			param = MathUtils.Ease(param, mNodes[mCurrentIdx].EaseIO.x, mNodes[mCurrentIdx].EaseIO.y);
+                // Smooth the param
+                param = MathUtils.Ease(param, mNodes[mCurrentIdx].EaseIO.x, mNodes[mCurrentIdx].EaseIO.y);
 
-			transform.position = GetHermiteInternal(mCurrentIdx, param);
+                transform.position = GetHermiteInternal(mCurrentIdx, param);
 
-			if (mRotations)
-			{
-				transform.rotation = GetSquad(mCurrentIdx, param);
-			}
-		}
-	}
+                if (mRotations)
+                {
+                    transform.rotation = GetSquad(mCurrentIdx, param);
+                }
+            }
+        }
+        else
+        {
+            if (this.transform.position.y < -8000)
+            {
+                Destroy(this.gameObject);
+            }
+        }
+    }
 
+    void OnCollisionEnter()
+    {
+        Destroy(this.gameObject);
+    }
 	Quaternion GetSquad(int idxFirstPoint, float t)
 	{
 		Quaternion Q0 = mNodes[idxFirstPoint - 1].Rot;

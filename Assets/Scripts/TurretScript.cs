@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 using AGC.Tools;
+using AGC.Settings;
 
 public class TurretScript : MonoBehaviour
 {
@@ -33,6 +34,8 @@ public class TurretScript : MonoBehaviour
     private Camera player_cam;
     private Camera turret_cam;
     private bool can_shoot;
+    private bool spawn_hulls;
+
     private Vector3 org;
     private Vector3 blisterorg;
 
@@ -42,6 +45,7 @@ public class TurretScript : MonoBehaviour
     void Start()
     {
         AGCTools.log("turretShooting_script loaded on: " + this.gameObject.name + " type: " + TurretType);
+        spawn_hulls = AGCSettings.FindCFGBool("SpawnHulls");
         audio_source = this.gameObject.AddComponent<AudioSource>();
         turret_cam = TurretCam;
         player_cam = player.GetComponentInChildren<Camera>();
@@ -80,7 +84,7 @@ public class TurretScript : MonoBehaviour
                 Vector2 RiUC = Random.insideUnitCircle * Error;
                 RaycastHit hit;
                 GameObject clone = Instantiate(Bullet, TurretBarrels[shoot_from].position, TurretBarrels[shoot_from].rotation) as GameObject;
-                if (BulletCase != null)
+                if (BulletCase != null && spawn_hulls)
                 {
                     GameObject case_clone = Instantiate(BulletCase, BulletExit[shoot_from].position, BulletExit[shoot_from].rotation) as GameObject;
                     Vector3 vc = BulletExit[shoot_from].transform.TransformDirection(0, 0, 2);
@@ -91,7 +95,7 @@ public class TurretScript : MonoBehaviour
                 Vector3 v = TurretBarrels[shoot_from].transform.TransformDirection(RiUC.x, RiUC.y, 1000);
                 clone.GetComponent<Rigidbody>().velocity = v;
                 clone.GetComponent<Rigidbody>().mass = 1000;
-                Destroy(clone, 5);
+                Destroy(clone, 2);
                 if (Physics.Raycast(this.transform.position, v, out hit, 20000))
                 {
                     try

@@ -8,7 +8,8 @@ public class CloudManager : MonoBehaviour
     //public GameObject cloud;
     public float speed = 10f;
     public int amount = 5;
-    public float max;
+    public Vector3 max;
+    public Vector3 min;
     GameObject[] clouds;
     bool on;
 
@@ -29,7 +30,7 @@ public class CloudManager : MonoBehaviour
             }
             foreach (GameObject c in clouds)
             {
-                c.transform.position = Random.insideUnitSphere * max;
+                c.transform.position = new Vector3(Random.Range(min.x, max.x), Random.Range(min.y, max.y), Random.Range(min.z, max.z));
             }
         }
     }
@@ -42,10 +43,9 @@ public class CloudManager : MonoBehaviour
             foreach (GameObject c in clouds)
             {
                 c.transform.position += Vector3.right * speed;
-                if (c.transform.position.x > max)
+                if (c.transform.position.x > max.x)
                 {
-                    c.transform.position = Random.insideUnitSphere * max;
-                    c.transform.position = new Vector3(c.transform.position.x - max, c.transform.position.y + max, c.transform.position.z);
+                    c.transform.position = new Vector3(Random.Range(min.x, max.x) - max.x, Random.Range(min.y, max.y), Random.Range(min.z, max.z));
                 }
 
             }
