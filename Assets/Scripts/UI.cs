@@ -27,7 +27,7 @@ public class UI : MonoBehaviour
         AmountClouds.value = AGCSettings.FindCFGInt("AmountClouds");
         List<string> AllTextures = new List<string>(AGCMod.IndexFileNames(".jpg"));
         AllTextures.AddRange(AGCMod.IndexFileNames(".png"));
-        AGCTools.log("IndexFiles ");
+        AGCTools.log("IndexFiles " + AllTextures.Count);
         //float x = 0;
         foreach (string s in AllTextures)
         {

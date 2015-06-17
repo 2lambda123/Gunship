@@ -79,7 +79,7 @@ public class TerrainManager : MonoBehaviour
         terr3L.transform.position += Vector3.right * speed;
         terr3R.transform.position += Vector3.right * speed;
 
-        CheckPos(terr1L);
+        CheckPos(terr1);
         CheckPosL(terr1L);
         CheckPosR(terr1R);
 

@@ -107,6 +107,7 @@ public class TurretScript : MonoBehaviour
                     }
                 }
                 shoot_from++;
+
                 if (shoot_from >= TurretBarrels.Length)
                     shoot_from = 0;
 
@@ -117,7 +118,6 @@ public class TurretScript : MonoBehaviour
 
     void UpdateBlister()
     {
-
         rotationY += Input.GetAxis("Mouse Y") * sensitivityY;
         rotationY = Mathf.Clamp(rotationY, minimumY, maximumY);
 

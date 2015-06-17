@@ -23,7 +23,7 @@ public class AIAirplanes : MonoBehaviour
     void Reset()
     {
         Vector3 v  = this.transform.eulerAngles;
-        this.transform.eulerAngles = new Vector3(Random.Range(-25, 25), Random.Range(v.y - 150, v.y + 150), Random.Range(-20, 20));
+        this.transform.eulerAngles = new Vector3(Random.Range(-25, 25), Random.Range(v.y + 150, v.y + 210), Random.Range(-20, 20));
         this.transform.position = this.transform.position / 1.1f;
     }
     public void ApplyDamage(float d)
