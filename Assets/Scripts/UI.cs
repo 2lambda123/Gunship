@@ -16,6 +16,7 @@ public class UI : MonoBehaviour
     public Toggle UsePlaneInsteadOfTerrain;
     public Toggle UseClouds;
     public Toggle SpawnHulls;
+    public Toggle SpawnParticles;
     public Slider AmountClouds;
 
     // Use this for initialization
@@ -24,6 +25,7 @@ public class UI : MonoBehaviour
         UsePlaneInsteadOfTerrain.isOn = AGCSettings.FindCFGBool("UsePlaneInsteadOfTerrain");
         UseClouds.isOn = AGCSettings.FindCFGBool("UseClouds");
         SpawnHulls.isOn = AGCSettings.FindCFGBool("SpawnHulls");
+        SpawnParticles.isOn = AGCSettings.FindCFGBool("SpawnParticles");
         AmountClouds.value = AGCSettings.FindCFGInt("AmountClouds");
         List<string> AllTextures = new List<string>(AGCMod.IndexFileNames(".jpg"));
         AllTextures.AddRange(AGCMod.IndexFileNames(".png"));
@@ -52,6 +54,7 @@ public class UI : MonoBehaviour
         AGCSettings.WriteCFGSetting("UsePlaneInsteadOfTerrain", UsePlaneInsteadOfTerrain.isOn);
         AGCSettings.WriteCFGSetting("UseClouds", UseClouds.isOn);
         AGCSettings.WriteCFGSetting("SpawnHulls", SpawnHulls.isOn);
+        AGCSettings.WriteCFGSetting("SpawnParticles", SpawnParticles.isOn);
         AGCSettings.WriteCFGSetting("AmountClouds", AmountClouds.value);
     }
 
