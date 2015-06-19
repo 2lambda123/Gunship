@@ -17,6 +17,7 @@ public class TurretScript : MonoBehaviour
     public Transform[] BulletExit;
     public Camera TurretCam;
     public AudioClip audio_clip;
+    public bool sound_loop;
     public GameObject player;
     public GameObject BlisterHull;
     public float sensitivityX = 15F;
@@ -53,6 +54,8 @@ public class TurretScript : MonoBehaviour
         turret_cam.enabled = false;
         player_cam.enabled = true;
         player.SetActive(true);
+        audio_source.clip = audio_clip;
+        audio_source.loop = sound_loop;
         org = this.transform.localEulerAngles;
         if (BlisterHull != null) blisterorg = BlisterHull.transform.localEulerAngles;
     }
@@ -75,11 +78,16 @@ public class TurretScript : MonoBehaviour
 
             if (t > 0)
                 t -= Time.deltaTime;
+            if (sound_loop)
+            {
+                if (Input.GetButtonDown("Fire1"))
+                    audio_source.Play();
+                if (Input.GetButtonUp("Fire1"))
+                    audio_source.Stop();
+            }
             if (Input.GetButton("Fire1") && t <= 0)
             {
-                //AGCTools.log("Fire1");
-                audio_source.clip = audio_clip;
-                audio_source.Play();
+                if (!sound_loop) audio_source.Play();
                 t = FireRate;
                 Vector2 RiUC = Random.insideUnitCircle * Error;
                 RaycastHit hit;

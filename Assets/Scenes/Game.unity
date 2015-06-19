@@ -14,7 +14,7 @@ SceneSettings:
 RenderSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 6
-  m_Fog: 1
+  m_Fog: 0
   m_FogColor: {r: .529411793, g: .533333361, b: .34117648, a: 1}
   m_FogMode: 1
   m_FogDensity: .00100000005
@@ -2194,7 +2194,8 @@ MonoBehaviour:
   - {fileID: 1721759405}
   - {fileID: 1721759405}
   TurretCam: {fileID: 406679979}
-  audio_clip: {fileID: 8300000, guid: 749e0777688c184469ae7e133083647d, type: 3}
+  audio_clip: {fileID: 8300000, guid: 0a904689cfa7293459308cf84f20bbb2, type: 3}
+  sound_loop: 1
   player: {fileID: 1625131542}
   BlisterHull: {fileID: 1721759404}
   sensitivityX: 5
@@ -9048,7 +9049,7 @@ Prefab:
     - target: {fileID: 11437894, guid: fd6993fff2ae16447ba959170d5207ec, type: 2}
       propertyPath: audio_clip
       value: 
-      objectReference: {fileID: 8300000, guid: 749e0777688c184469ae7e133083647d, type: 3}
+      objectReference: {fileID: 8300000, guid: 0a904689cfa7293459308cf84f20bbb2, type: 3}
     - target: {fileID: 2047566, guid: fd6993fff2ae16447ba959170d5207ec, type: 2}
       propertyPath: far clip plane
       value: 1e+06
@@ -9064,6 +9065,10 @@ Prefab:
     - target: {fileID: 11437894, guid: fd6993fff2ae16447ba959170d5207ec, type: 2}
       propertyPath: Damage
       value: 100000
+      objectReference: {fileID: 0}
+    - target: {fileID: 11437894, guid: fd6993fff2ae16447ba959170d5207ec, type: 2}
+      propertyPath: sound_loop
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: fd6993fff2ae16447ba959170d5207ec, type: 2}
@@ -12114,7 +12119,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1187926369}
   m_LocalRotation: {x: 0, y: -.707106829, z: 0, w: .707106709}
-  m_LocalPosition: {x: -6.04699993, y: -12.3800001, z: 1.57000005}
+  m_LocalPosition: {x: -6.04699993, y: -12.3800001, z: 1.67999995}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 2051290591}
@@ -56276,31 +56281,31 @@ Prefab:
     m_Modifications:
     - target: {fileID: 400002, guid: aac275361aef65446bef1fb5f0ae1536, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 18.948
+      value: -24.2782993
       objectReference: {fileID: 0}
     - target: {fileID: 400002, guid: aac275361aef65446bef1fb5f0ae1536, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 4.83400011
+      value: 3.62400007
       objectReference: {fileID: 0}
     - target: {fileID: 400002, guid: aac275361aef65446bef1fb5f0ae1536, type: 3}
       propertyPath: m_LocalPosition.z
-      value: .80400002
+      value: .512000024
       objectReference: {fileID: 0}
     - target: {fileID: 400002, guid: aac275361aef65446bef1fb5f0ae1536, type: 3}
       propertyPath: m_LocalRotation.x
-      value: .707106829
+      value: -.500000238
       objectReference: {fileID: 0}
     - target: {fileID: 400002, guid: aac275361aef65446bef1fb5f0ae1536, type: 3}
       propertyPath: m_LocalRotation.y
-      value: 0
+      value: .499999821
       objectReference: {fileID: 0}
     - target: {fileID: 400002, guid: aac275361aef65446bef1fb5f0ae1536, type: 3}
       propertyPath: m_LocalRotation.z
-      value: 0
+      value: -.499999911
       objectReference: {fileID: 0}
     - target: {fileID: 400002, guid: aac275361aef65446bef1fb5f0ae1536, type: 3}
       propertyPath: m_LocalRotation.w
-      value: .707106709
+      value: -.500000119
       objectReference: {fileID: 0}
     - target: {fileID: 400002, guid: aac275361aef65446bef1fb5f0ae1536, type: 3}
       propertyPath: m_RootOrder
@@ -56308,15 +56313,15 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 400002, guid: aac275361aef65446bef1fb5f0ae1536, type: 3}
       propertyPath: m_LocalScale.x
-      value: .5
+      value: .75
       objectReference: {fileID: 0}
     - target: {fileID: 400002, guid: aac275361aef65446bef1fb5f0ae1536, type: 3}
       propertyPath: m_LocalScale.y
-      value: .5
+      value: .75
       objectReference: {fileID: 0}
     - target: {fileID: 400002, guid: aac275361aef65446bef1fb5f0ae1536, type: 3}
       propertyPath: m_LocalScale.z
-      value: .5
+      value: .75
       objectReference: {fileID: 0}
     - target: {fileID: 100000, guid: aac275361aef65446bef1fb5f0ae1536, type: 3}
       propertyPath: m_IsActive
@@ -58158,6 +58163,7 @@ MonoBehaviour:
   - {fileID: 1721759405}
   TurretCam: {fileID: 406679979}
   audio_clip: {fileID: 8300000, guid: 749e0777688c184469ae7e133083647d, type: 3}
+  sound_loop: 0
   player: {fileID: 1625131542}
   BlisterHull: {fileID: 199511751}
   sensitivityX: 5

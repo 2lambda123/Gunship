@@ -20,6 +20,14 @@ public class splashscreen : MonoBehaviour
     }
     IEnumerator Start()
     {
+        if (!AGCSettings.FindCFG())
+        {
+            AGCSettings.WriteCFGSetting("UsePlaneInsteadOfTerrain", false);
+            AGCSettings.WriteCFGSetting("UseClouds", true);
+            AGCSettings.WriteCFGSetting("SpawnHulls", true);
+            AGCSettings.WriteCFGSetting("SpawnParticles", true);
+            AGCSettings.WriteCFGSetting("AmountClouds", 500);
+        }
         SendData();
         AGCTools.log("dataPath: " + Application.dataPath);
         AGCTools.log("platform: " + Application.platform);

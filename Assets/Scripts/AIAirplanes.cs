@@ -51,10 +51,10 @@ public class AIAirplanes : MonoBehaviour
             if (spawn_particles)
             {
                 GameObject trail = Instantiate(Resources.Load<GameObject>("Trail"), this.transform.position, Quaternion.identity) as GameObject;
-                trail.transform.parent = this.transform;
-                GameObject explosion = Instantiate(Resources.Load<GameObject>("Explosion"), this.transform.position, Quaternion.identity) as GameObject;
-                Destroy(explosion, 5f);
+                trail.transform.parent = this.transform;               
             }
+            GameObject explosion = Instantiate(Resources.Load<GameObject>("Explosion"), this.transform.position, Quaternion.identity) as GameObject;
+            Destroy(explosion, 5f);
             this.GetComponent<MeshRenderer>().material.color = new Color(0, 0, 0);
             Rigidbody rb = this.GetComponent<Rigidbody>();
             rb.isKinematic = false;
