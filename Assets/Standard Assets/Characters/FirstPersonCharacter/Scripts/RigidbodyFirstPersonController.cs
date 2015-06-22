@@ -20,9 +20,6 @@ namespace UnityStandardAssets.Characters.FirstPerson
             public AnimationCurve SlopeCurveModifier = new AnimationCurve(new Keyframe(-90.0f, 1.0f), new Keyframe(0.0f, 1.0f), new Keyframe(90.0f, 0.0f));
             [HideInInspector] public float CurrentTargetSpeed = 8f;
 
-
-			
-
 #if !MOBILE_INPUT
             private bool m_Running;
 #endif
@@ -73,8 +70,8 @@ namespace UnityStandardAssets.Characters.FirstPerson
         {
             public float groundCheckDistance = 0.01f; // distance for checking if the controller is grounded ( 0.01f seems to work best for this )
             public float stickToGroundHelperDistance = 0.5f; // stops the character
-            public float slowDownRate = 100f; // rate at which the controller comes to a stop when there is no input
-            public bool airControl = true; // can the user control the direction that is being moved in the air
+            public float slowDownRate = 20f; // rate at which the controller comes to a stop when there is no input
+            public bool airControl; // can the user control the direction that is being moved in the air
         }
 
 
@@ -117,16 +114,13 @@ namespace UnityStandardAssets.Characters.FirstPerson
 #endif
             }
         }
-		public bool MovementDirty {get; set;}
+
 
         private void Start()
         {
             m_RigidBody = GetComponent<Rigidbody>();
             m_Capsule = GetComponent<CapsuleCollider>();
             mouseLook.Init (transform, cam.transform);
-
-			MovementDirty = false;
-			
         }
 
 
@@ -159,7 +153,6 @@ namespace UnityStandardAssets.Characters.FirstPerson
                     (movementSettings.CurrentTargetSpeed*movementSettings.CurrentTargetSpeed))
                 {
                     m_RigidBody.AddForce(desiredMove*SlopeMultiplier(), ForceMode.Impulse);
-					MovementDirty = true;
                 }
             }
 

@@ -6,10 +6,10 @@ using System.Collections.Generic;
 using AGC.Tools;
 using AGC.Settings;
 
-public class splashscreen : MonoBehaviour
+public class SplashScreen : MonoBehaviour
 {
 
-    public Material mat;
+    public Material[] Logos;
 
     public float fadeTime = 1.0f;
     public int nextscene = 1;
@@ -20,6 +20,9 @@ public class splashscreen : MonoBehaviour
     }
     IEnumerator Start()
     {
+        Analytics.SetUserId(Environment.UserName);
+        foreach (Material m in Logos)
+            m.color = new Color(1, 1, 1, 0);
         if (!AGCSettings.FindCFG())
         {
             AGCSettings.WriteCFGSetting("UsePlaneInsteadOfTerrain", false);
@@ -28,7 +31,6 @@ public class splashscreen : MonoBehaviour
             AGCSettings.WriteCFGSetting("SpawnParticles", true);
             AGCSettings.WriteCFGSetting("AmountClouds", 500);
         }
-        SendData();
         AGCTools.log("dataPath: " + Application.dataPath);
         AGCTools.log("platform: " + Application.platform);
         AGCTools.log("systemLanguage: " + Application.systemLanguage);
@@ -38,13 +40,19 @@ public class splashscreen : MonoBehaviour
         AGCTools.log("UserName: " + Environment.UserName);
         AGCTools.log("MachineName: " + Environment.MachineName);
         AGCSettings.WriteCFGSetting("UserName", Environment.UserName);
-        //mat.color.a = 0;
-        mat.color = new Color(1, 1, 1, 0);
-        yield return new WaitForSeconds(0.5f);
-        yield return StartCoroutine(Fademat(mat, fadeTime, Fade.In));
-        yield return new WaitForSeconds(0.25f);
-        yield return StartCoroutine(Fademat(mat, fadeTime, Fade.Out));
-        yield return new WaitForSeconds(0.5f);
+
+        foreach (Material m in Logos)
+        {
+            yield return new WaitForSeconds(0.5f);
+            yield return StartCoroutine(Fademat(m, fadeTime, Fade.In));
+            yield return new WaitForSeconds(0.25f);
+            yield return StartCoroutine(Fademat(m, fadeTime, Fade.Out));
+            yield return new WaitForSeconds(0.5f);
+        }
+#if UNITY_EDITOR
+        foreach (Material m in Logos)
+            m.color = new Color(1, 1, 1, 1);
+#endif//UNITY_EDITOR
         Application.LoadLevel(nextscene);
     }
 
@@ -66,11 +74,7 @@ public class splashscreen : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Escape))
+        if (Input.anyKeyDown)
             Application.LoadLevel(nextscene);
-    }
-    void SendData()
-    {
-        Analytics.SetUserId(Environment.UserName);
     }
 }
