@@ -18,7 +18,7 @@ public class TurretScript : MonoBehaviour
     public Camera TurretCam;
     public AudioClip audio_clip;
     public bool sound_loop;
-    public GameObject player;
+    
     public GameObject BlisterHull;
     public float sensitivityX = 15F;
     public float sensitivityY = 15F;
@@ -27,6 +27,7 @@ public class TurretScript : MonoBehaviour
     public float minimumY = -60F;
     public float maximumY = 60F;
 
+    private GameObject player;
     private int shoot_from = 0;
     private float rotationY = 0F;
     private float rotationX = 0F;
@@ -48,6 +49,7 @@ public class TurretScript : MonoBehaviour
         AGCTools.log("turretShooting_script loaded on: " + this.gameObject.name + " type: " + TurretType);
         spawn_hulls = AGCSettings.FindCFGBool("SpawnHulls");
         audio_source = this.gameObject.AddComponent<AudioSource>();
+        player = GameObject.FindWithTag("Player");
         turret_cam = TurretCam;
         player_cam = player.GetComponentInChildren<Camera>();
         can_shoot = false;

@@ -16,8 +16,8 @@ public class AIAirplanes : MonoBehaviour
         Vector3 v = this.transform.position;
         if (!kill)
         {
-            
-            this.transform.Translate(Vector3.left * speed);
+
+            this.transform.Translate(Vector3.left * (Time.deltaTime * speed));
             if (v.x > max.x || v.x < min.x)
                 Reset();
             if (v.y > max.y || v.y < min.y)
@@ -60,6 +60,7 @@ public class AIAirplanes : MonoBehaviour
             rb.isKinematic = false;
             rb.AddTorque(Random.onUnitSphere * 1000); 
             rb.AddRelativeForce(Vector3.left * 7500);
+            this.tag = "Untagged";
             kill = true;
         }   
     }
