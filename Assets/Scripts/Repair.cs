@@ -43,7 +43,7 @@ public class Repair : MonoBehaviour
                         "Press and hold F to repair");		//Display Value
             }
 
-            if (Input.GetKey(KeyCode.F))
+            if (Input.GetKey(KeyCode.F) || Input.GetMouseButton(0))
             {
                 showRepairProgressGui = true;
                 showProgressBarWidthGui = false;
@@ -51,7 +51,7 @@ public class Repair : MonoBehaviour
                 progressBarWidth += repairModifier;
             }
 
-            if (Input.GetKeyUp(KeyCode.F))
+            if (Input.GetKeyUp(KeyCode.F) || Input.GetMouseButtonUp(0))
             {
                 showRepairProgressGui = false;
                 showProgressBarWidthGui = true;

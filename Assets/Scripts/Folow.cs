@@ -10,6 +10,10 @@ public class Folow : MonoBehaviour
     void Update()
     {
         if (folow != null)
+        {
             this.transform.position = folow.transform.position;
+            this.transform.rotation = folow.transform.rotation;
+        }
     }
+
 }

@@ -68,6 +68,7 @@ public class TurretScript : MonoBehaviour
             float dist = Vector3.Distance(player.transform.position, this.transform.position);
             if (dist < enterDistace)
             {
+                audio_source.Stop();
                 can_shoot = !can_shoot;
                 turret_cam.enabled = !turret_cam.enabled;
                 player_cam.enabled = !player_cam.enabled;
